@@ -1,0 +1,107 @@
+[
+  {
+    "__type__": "cc.AnimationClip",
+    "_name": "Ladder",
+    "_objFlags": 0,
+    "_native": "",
+    "sample": 10.0,
+    "speed": 1,
+    "wrapMode": 2,
+    "_duration": 0.8,
+    "_hash": 0,
+    "_tracks": [
+      {
+        "__id__": 1
+      }
+    ],
+    "_events": [],
+    "_exoticAnimation": null
+  },
+  {
+    "__type__": "cc.animation.ObjectTrack",
+    "_binding": {
+      "__type__": "cc.animation.TrackBinding",
+      "path": {
+        "__id__": 2
+      }
+    },
+    "_channel": {
+      "__id__": 5
+    }
+  },
+  {
+    "__type__": "cc.animation.TrackPath",
+    "_paths": [
+      {
+        "__id__": 3
+      },
+      {
+        "__id__": 4
+      },
+      "spriteFrame"
+    ]
+  },
+  {
+    "__type__": "cc.animation.HierarchyPath",
+    "path": "/"
+  },
+  {
+    "__type__": "cc.animation.ComponentPath",
+    "component": "cc.Sprite"
+  },
+  {
+    "__type__": "cc.animation.Channel",
+    "_curve": {
+      "__id__": 6
+    }
+  },
+  {
+    "__type__": "cc.ObjectCurve",
+    "_times": [
+      0.0,
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7
+    ],
+    "_values": [
+      {
+        "__uuid__": "95de4303-e966-501b-b030-7f9a91d75b95@f9941",
+        "__expectedType__": "cc.Asset"
+      },
+      {
+        "__uuid__": "0df49ce7-1fc9-5f79-b101-15a4dc5e03f0@f9941",
+        "__expectedType__": "cc.Asset"
+      },
+      {
+        "__uuid__": "bf8c51b0-8386-50f6-ac4e-b44f89d8a283@f9941",
+        "__expectedType__": "cc.Asset"
+      },
+      {
+        "__uuid__": "9eff0c1d-e051-548c-a7ea-7284982215c0@f9941",
+        "__expectedType__": "cc.Asset"
+      },
+      {
+        "__uuid__": "1579f170-98c0-5b18-9ae6-f88c53632d16@f9941",
+        "__expectedType__": "cc.Asset"
+      },
+      {
+        "__uuid__": "3c5501ca-2ce4-5bdc-b6d4-dce013e1140c@f9941",
+        "__expectedType__": "cc.Asset"
+      },
+      {
+        "__uuid__": "f7091113-aeda-5e56-8e48-45e77c7d0c1d@f9941",
+        "__expectedType__": "cc.Asset"
+      },
+      {
+        "__uuid__": "b520e131-41e0-5c36-b795-c8ddc1444671@f9941",
+        "__expectedType__": "cc.Asset"
+      }
+    ],
+    "preExtrapolation": 1,
+    "postExtrapolation": 1
+  }
+]

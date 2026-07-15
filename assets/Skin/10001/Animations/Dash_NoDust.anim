@@ -1,0 +1,102 @@
+[
+  {
+    "__type__": "cc.AnimationClip",
+    "_name": "Dash NoDust",
+    "_objFlags": 0,
+    "_native": "",
+    "sample": 10.0,
+    "speed": 1,
+    "wrapMode": 2,
+    "_duration": 0.70000005,
+    "_hash": 0,
+    "_tracks": [
+      {
+        "__id__": 1
+      }
+    ],
+    "_events": [],
+    "_exoticAnimation": null
+  },
+  {
+    "__type__": "cc.animation.ObjectTrack",
+    "_binding": {
+      "__type__": "cc.animation.TrackBinding",
+      "path": {
+        "__id__": 2
+      }
+    },
+    "_channel": {
+      "__id__": 5
+    }
+  },
+  {
+    "__type__": "cc.animation.TrackPath",
+    "_paths": [
+      {
+        "__id__": 3
+      },
+      {
+        "__id__": 4
+      },
+      "spriteFrame"
+    ]
+  },
+  {
+    "__type__": "cc.animation.HierarchyPath",
+    "path": "/"
+  },
+  {
+    "__type__": "cc.animation.ComponentPath",
+    "component": "cc.Sprite"
+  },
+  {
+    "__type__": "cc.animation.Channel",
+    "_curve": {
+      "__id__": 6
+    }
+  },
+  {
+    "__type__": "cc.ObjectCurve",
+    "_times": [
+      0.0,
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6
+    ],
+    "_values": [
+      {
+        "__uuid__": "bb248a22-c426-5239-881e-ad3e895319ff@f9941",
+        "__expectedType__": "cc.Asset"
+      },
+      {
+        "__uuid__": "3c41bb1a-4489-5e8f-8fc5-74937ef64904@f9941",
+        "__expectedType__": "cc.Asset"
+      },
+      {
+        "__uuid__": "ceee4444-d3f9-54e5-8fb0-812151a7c3f6@f9941",
+        "__expectedType__": "cc.Asset"
+      },
+      {
+        "__uuid__": "c2cda57e-42c4-511c-b520-2f6cfe21a889@f9941",
+        "__expectedType__": "cc.Asset"
+      },
+      {
+        "__uuid__": "5e9faacb-3718-5277-b6f2-ddccea64ebc1@f9941",
+        "__expectedType__": "cc.Asset"
+      },
+      {
+        "__uuid__": "aae75a83-9535-53e6-b6be-eb2fe1834a1a@f9941",
+        "__expectedType__": "cc.Asset"
+      },
+      {
+        "__uuid__": "5c5c61c1-4ce2-5419-936b-fdef70850eb8@f9941",
+        "__expectedType__": "cc.Asset"
+      }
+    ],
+    "preExtrapolation": 1,
+    "postExtrapolation": 1
+  }
+]

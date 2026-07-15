@@ -1,0 +1,92 @@
+[
+  {
+    "__type__": "cc.AnimationClip",
+    "_name": "Slide",
+    "_objFlags": 0,
+    "_native": "",
+    "sample": 10.0,
+    "speed": 1,
+    "wrapMode": 2,
+    "_duration": 0.5,
+    "_hash": 0,
+    "_tracks": [
+      {
+        "__id__": 1
+      }
+    ],
+    "_events": [],
+    "_exoticAnimation": null
+  },
+  {
+    "__type__": "cc.animation.ObjectTrack",
+    "_binding": {
+      "__type__": "cc.animation.TrackBinding",
+      "path": {
+        "__id__": 2
+      }
+    },
+    "_channel": {
+      "__id__": 5
+    }
+  },
+  {
+    "__type__": "cc.animation.TrackPath",
+    "_paths": [
+      {
+        "__id__": 3
+      },
+      {
+        "__id__": 4
+      },
+      "spriteFrame"
+    ]
+  },
+  {
+    "__type__": "cc.animation.HierarchyPath",
+    "path": "/"
+  },
+  {
+    "__type__": "cc.animation.ComponentPath",
+    "component": "cc.Sprite"
+  },
+  {
+    "__type__": "cc.animation.Channel",
+    "_curve": {
+      "__id__": 6
+    }
+  },
+  {
+    "__type__": "cc.ObjectCurve",
+    "_times": [
+      0.0,
+      0.1,
+      0.2,
+      0.3,
+      0.4
+    ],
+    "_values": [
+      {
+        "__uuid__": "f2a5addf-981e-5ed9-b7ee-adca1ab722d0@f9941",
+        "__expectedType__": "cc.Asset"
+      },
+      {
+        "__uuid__": "3546a2e6-9eca-516c-97cc-e6edb3feb33c@f9941",
+        "__expectedType__": "cc.Asset"
+      },
+      {
+        "__uuid__": "49ac131e-0ba6-5d2a-833f-3e279dda1f83@f9941",
+        "__expectedType__": "cc.Asset"
+      },
+      {
+        "__uuid__": "b57acecf-6f95-5cb7-b4be-5fd4649fb574@f9941",
+        "__expectedType__": "cc.Asset"
+      },
+      {
+        "__uuid__": "51488b8f-d72a-5aca-8e1f-5f29b8c13bd6@f9941",
+        "__expectedType__": "cc.Asset"
+      }
+    ],
+    "preExtrapolation": 1,
+    "postExtrapolation": 1
+  }
+]

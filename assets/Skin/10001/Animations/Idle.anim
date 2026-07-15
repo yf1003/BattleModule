@@ -1,0 +1,97 @@
+[
+  {
+    "__type__": "cc.AnimationClip",
+    "_name": "Idle",
+    "_objFlags": 0,
+    "_native": "",
+    "sample": 10.0,
+    "speed": 1,
+    "wrapMode": 2,
+    "_duration": 0.6,
+    "_hash": 0,
+    "_tracks": [
+      {
+        "__id__": 1
+      }
+    ],
+    "_events": [],
+    "_exoticAnimation": null
+  },
+  {
+    "__type__": "cc.animation.ObjectTrack",
+    "_binding": {
+      "__type__": "cc.animation.TrackBinding",
+      "path": {
+        "__id__": 2
+      }
+    },
+    "_channel": {
+      "__id__": 5
+    }
+  },
+  {
+    "__type__": "cc.animation.TrackPath",
+    "_paths": [
+      {
+        "__id__": 3
+      },
+      {
+        "__id__": 4
+      },
+      "spriteFrame"
+    ]
+  },
+  {
+    "__type__": "cc.animation.HierarchyPath",
+    "path": "/"
+  },
+  {
+    "__type__": "cc.animation.ComponentPath",
+    "component": "cc.Sprite"
+  },
+  {
+    "__type__": "cc.animation.Channel",
+    "_curve": {
+      "__id__": 6
+    }
+  },
+  {
+    "__type__": "cc.ObjectCurve",
+    "_times": [
+      0.0,
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5
+    ],
+    "_values": [
+      {
+        "__uuid__": "d2cfc19e-5940-511a-8fca-a83d25b3fb13@f9941",
+        "__expectedType__": "cc.Asset"
+      },
+      {
+        "__uuid__": "1a6360b0-cc54-5dce-a32b-06cc6de47ced@f9941",
+        "__expectedType__": "cc.Asset"
+      },
+      {
+        "__uuid__": "bab53cca-a3fe-5925-94a0-822cb46c553b@f9941",
+        "__expectedType__": "cc.Asset"
+      },
+      {
+        "__uuid__": "32b1cce2-ac36-507e-b624-c297e9c9a67d@f9941",
+        "__expectedType__": "cc.Asset"
+      },
+      {
+        "__uuid__": "d39e656f-4449-5f3d-9de6-472037e2f7de@f9941",
+        "__expectedType__": "cc.Asset"
+      },
+      {
+        "__uuid__": "8249a863-984c-5085-a315-29badb6bc877@f9941",
+        "__expectedType__": "cc.Asset"
+      }
+    ],
+    "preExtrapolation": 1,
+    "postExtrapolation": 1
+  }
+]

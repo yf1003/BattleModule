@@ -1,0 +1,87 @@
+[
+  {
+    "__type__": "cc.AnimationClip",
+    "_name": "Hurt",
+    "_objFlags": 0,
+    "_native": "",
+    "sample": 10.0,
+    "speed": 1,
+    "wrapMode": 2,
+    "_duration": 0.4,
+    "_hash": 0,
+    "_tracks": [
+      {
+        "__id__": 1
+      }
+    ],
+    "_events": [],
+    "_exoticAnimation": null
+  },
+  {
+    "__type__": "cc.animation.ObjectTrack",
+    "_binding": {
+      "__type__": "cc.animation.TrackBinding",
+      "path": {
+        "__id__": 2
+      }
+    },
+    "_channel": {
+      "__id__": 5
+    }
+  },
+  {
+    "__type__": "cc.animation.TrackPath",
+    "_paths": [
+      {
+        "__id__": 3
+      },
+      {
+        "__id__": 4
+      },
+      "spriteFrame"
+    ]
+  },
+  {
+    "__type__": "cc.animation.HierarchyPath",
+    "path": "/"
+  },
+  {
+    "__type__": "cc.animation.ComponentPath",
+    "component": "cc.Sprite"
+  },
+  {
+    "__type__": "cc.animation.Channel",
+    "_curve": {
+      "__id__": 6
+    }
+  },
+  {
+    "__type__": "cc.ObjectCurve",
+    "_times": [
+      0.0,
+      0.1,
+      0.2,
+      0.3
+    ],
+    "_values": [
+      {
+        "__uuid__": "70097aed-8d2c-526b-861d-34b62c885d1b@f9941",
+        "__expectedType__": "cc.Asset"
+      },
+      {
+        "__uuid__": "ada38884-505b-5894-bc65-f2802ce0e9ee@f9941",
+        "__expectedType__": "cc.Asset"
+      },
+      {
+        "__uuid__": "8ee0051a-d410-51d1-89b3-eb7b80c7b216@f9941",
+        "__expectedType__": "cc.Asset"
+      },
+      {
+        "__uuid__": "b0502e68-534a-58bc-800a-e1d7c99c1279@f9941",
+        "__expectedType__": "cc.Asset"
+      }
+    ],
+    "preExtrapolation": 1,
+    "postExtrapolation": 1
+  }
+]

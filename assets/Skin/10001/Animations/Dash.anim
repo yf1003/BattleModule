@@ -1,0 +1,102 @@
+[
+  {
+    "__type__": "cc.AnimationClip",
+    "_name": "Dash",
+    "_objFlags": 0,
+    "_native": "",
+    "sample": 10.0,
+    "speed": 1,
+    "wrapMode": 2,
+    "_duration": 0.70000005,
+    "_hash": 0,
+    "_tracks": [
+      {
+        "__id__": 1
+      }
+    ],
+    "_events": [],
+    "_exoticAnimation": null
+  },
+  {
+    "__type__": "cc.animation.ObjectTrack",
+    "_binding": {
+      "__type__": "cc.animation.TrackBinding",
+      "path": {
+        "__id__": 2
+      }
+    },
+    "_channel": {
+      "__id__": 5
+    }
+  },
+  {
+    "__type__": "cc.animation.TrackPath",
+    "_paths": [
+      {
+        "__id__": 3
+      },
+      {
+        "__id__": 4
+      },
+      "spriteFrame"
+    ]
+  },
+  {
+    "__type__": "cc.animation.HierarchyPath",
+    "path": "/"
+  },
+  {
+    "__type__": "cc.animation.ComponentPath",
+    "component": "cc.Sprite"
+  },
+  {
+    "__type__": "cc.animation.Channel",
+    "_curve": {
+      "__id__": 6
+    }
+  },
+  {
+    "__type__": "cc.ObjectCurve",
+    "_times": [
+      0.0,
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6
+    ],
+    "_values": [
+      {
+        "__uuid__": "8619181b-cd63-57ce-876f-4ae10c52ff49@f9941",
+        "__expectedType__": "cc.Asset"
+      },
+      {
+        "__uuid__": "423df24d-e2d0-52b0-aa90-3cb834f21f54@f9941",
+        "__expectedType__": "cc.Asset"
+      },
+      {
+        "__uuid__": "218bb0c3-92c3-53f1-966f-0985e88df778@f9941",
+        "__expectedType__": "cc.Asset"
+      },
+      {
+        "__uuid__": "2cea964d-a56b-5235-ab01-f99cd66765a5@f9941",
+        "__expectedType__": "cc.Asset"
+      },
+      {
+        "__uuid__": "3e32ec6a-6e18-589f-9d5d-c2b5d69a2b34@f9941",
+        "__expectedType__": "cc.Asset"
+      },
+      {
+        "__uuid__": "b9344bb8-2f92-5854-8ddf-b8085e7c4cb3@f9941",
+        "__expectedType__": "cc.Asset"
+      },
+      {
+        "__uuid__": "f5ac0253-a62a-59f9-99a9-c9de20356b41@f9941",
+        "__expectedType__": "cc.Asset"
+      }
+    ],
+    "preExtrapolation": 1,
+    "postExtrapolation": 1
+  }
+]
