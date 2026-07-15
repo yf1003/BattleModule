@@ -9,6 +9,7 @@ export interface IGameSystemState {
 /** 角色 */
 export interface IActor {
     id: number;
+    hp: number;
     type: EActorType;
     pos: IVec2;
     dir: EActorDir;

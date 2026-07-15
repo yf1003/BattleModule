@@ -5,6 +5,8 @@ import { GameSystem } from "../Share/GameSystem";
 export class GameManager extends Singleton<GameManager>() {
     /** 游戏统一逻辑计算系统 */
     private gameSystem: GameSystem = null
+    /** 当前操控的玩家id */
+    public myPlayerId: number = 0
 
     init() {
         this.gameSystem = new GameSystem();
@@ -16,5 +18,6 @@ export class GameManager extends Singleton<GameManager>() {
 
     clear() {
         this.gameSystem = null
+        this.myPlayerId = 0
     }
 }
