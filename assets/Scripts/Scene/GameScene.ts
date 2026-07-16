@@ -1,7 +1,7 @@
 import * as cc from "cc";
 import { ControlManager } from "../ControlInput/ControlManager";
 import { ActorResManager } from "../Global/ActorResManager";
-import { EActorType, EInputType, IGameSystemInput } from "../Share/Define";
+import { EActorDir, EActorType, EInputType, IGameSystemInput } from "../Share/Define";
 import BattleEvent from "../Events/BattleEvent";
 import { EBattleEvents } from "../Events/BattleEventsEnum";
 import { GameManager } from "../Global/GameManager";
@@ -16,14 +16,27 @@ export default class GameScene extends cc.Component {
 
     async onLoad() {
         LayerManager.ins.init()
+        GameManager.ins.init()
         await this.preload()
         this.registerEvents()
         this.shouldUpdate = true
+
+        this.addFakeData()
     }
 
     onDestroy() {
         BattleEvent.targetOff(this)
         ActorResManager.ins.clear()
+    }
+
+    private addFakeData() {
+        GameManager.ins.gameSystem.state.actors.push({
+            id: 1,
+            type: EActorType.HERO,
+            hp: 100,
+            pos: cc.v2(0, 0),
+            dir: EActorDir.Right
+        })
     }
 
     private registerEvents() {

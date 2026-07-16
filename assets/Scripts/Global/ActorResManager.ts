@@ -38,7 +38,7 @@ export class ActorResManager extends Singleton<ActorResManager>() {
 
     /**加载角色预制 */
     public async preloadActorPrefab(actorType: EActorType): Promise<cc.Prefab> {
-        return AssetsHandler.loadAssets(`${actorType}`, `Prefab/Actor`, cc.Prefab)
+        return AssetsHandler.loadAssets(`BattleRes`, `Prefab/Actor`, cc.Prefab)
     }
 
     /** 加载指定角色的所有Clip */
