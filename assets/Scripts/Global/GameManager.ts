@@ -28,7 +28,7 @@ export class GameManager extends Singleton<GameManager>() {
 
     /** 获取当前控制的角色 */
     getUserActor() {
-        return this.actorMap.get(this.myPlayerId)
+        return this.gameSystem.state.actors.find(v => v.id === this.myPlayerId)
     }
 
     clear() {

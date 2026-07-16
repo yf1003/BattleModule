@@ -204,7 +204,7 @@
     "__prefab": {
       "__id__": 8
     },
-    "playOnLoad": true,
+    "playOnLoad": false,
     "_clips": [],
     "_defaultClip": null,
     "_id": ""

@@ -1,7 +1,13 @@
 import * as cc from "cc";
 import { ControlManager } from "../ControlInput/ControlManager";
 import { ActorResManager } from "../Global/ActorResManager";
-import { EActorDir, EActorType, EInputType, IGameSystemInput } from "../Share/Define";
+import {
+    EActorDir,
+    EActorState,
+    EActorType,
+    EInputType,
+    IGameSystemInput,
+} from "../Share/Define";
 import BattleEvent from "../Events/BattleEvent";
 import { EBattleEvents } from "../Events/BattleEventsEnum";
 import { GameManager } from "../Global/GameManager";
@@ -26,6 +32,7 @@ export default class GameScene extends cc.Component {
 
     onDestroy() {
         BattleEvent.targetOff(this)
+        ControlManager.ins.onControlAttack = null
         ActorResManager.ins.clear()
     }
 
@@ -35,30 +42,48 @@ export default class GameScene extends cc.Component {
             type: EActorType.HERO,
             hp: 100,
             pos: cc.v2(0, 0),
-            dir: EActorDir.Right
+            dir: EActorDir.Right,
+            state: EActorState.Idle,
+            stateStartTime: 0,
+            stateEndTime: 0,
+            stateVersion: 0,
         })
         GameManager.ins.myPlayerId = 1
     }
 
     private registerEvents() {
         BattleEvent.on(EBattleEvents.ClientSync, this.handleClientSync, this)
+        ControlManager.ins.onControlAttack = this.handleControlAttack
     }
 
     private async preload() {
         // 角色资源
-        const actorTypeList = []
+        const actorTypeList: EActorType[] = []
         for (const key in EActorType) {
             const type = EActorType[key]
             if (typeof type !== 'number') continue
             actorTypeList.push(type)
         }
-        ActorResManager.ins.prelaod(actorTypeList)
-        // 控制器
-        await ControlManager.ins.initControll()
+        await Promise.all([
+            ActorResManager.ins.prelaod(actorTypeList),
+            ControlManager.ins.initControll(),
+        ])
     }
 
     private handleClientSync(input: IGameSystemInput) {
         GameManager.ins.sendClientInput(input)
+    }
+
+    private handleControlAttack = () => {
+        const actor = GameManager.ins.getUserActor()
+        if (!actor || actor.state === EActorState.Dead) {
+            return
+        }
+
+        BattleEvent.emit(EBattleEvents.ClientSync, {
+            type: EInputType.ActorAttack,
+            actorId: actor.id,
+        })
     }
 
     update(dt: number) {
@@ -76,17 +101,15 @@ export default class GameScene extends cc.Component {
     /** tick当前玩家 */
     private tickUserActor(dt: number) {
         const actor = GameManager.ins.getUserActor()
-        if (!actor || actor.isDead) return
+        if (!actor || actor.state === EActorState.Dead) return
 
-        if (ControlManager.ins.inputDir.length()) {
-            const { x, y } = ControlManager.ins.inputDir;
-            BattleEvent.emit(EBattleEvents.ClientSync, {
-                type: EInputType.ActorMove,
-                actorId: actor.id,
-                moveDirection: cc.v2(x, y),
-                dt: dt,
-            });
-        }
+        const { x, y } = ControlManager.ins.inputDir;
+        BattleEvent.emit(EBattleEvents.ClientSync, {
+            type: EInputType.ActorMove,
+            actorId: actor.id,
+            moveDirection: cc.v2(x, y),
+            dt: dt,
+        });
     }
 
     /** 本地时间流逝：目前不是联机，直接本地 */
@@ -102,6 +125,7 @@ export default class GameScene extends cc.Component {
     }
 
     private renderActor() {
+        const now = GameManager.ins.gameSystem.state.now
         for (const actor of GameManager.ins.gameSystem.state.actors) {
             let unit = GameManager.ins.actorMap.get(actor.id)
             if (!unit) {
@@ -109,12 +133,11 @@ export default class GameScene extends cc.Component {
                 const unit = cc.instantiate(actorPrefab).getComponent(Unit)
                 unit.node.setParent(LayerManager.ins.unitLayer)
                 GameManager.ins.actorMap.set(actor.id, unit)
-                unit.init(actor)
+                unit.init(actor, now)
             } else {
-                unit.render(actor)
+                unit.render(actor, now)
             }
         }
     }
-
 
 }
