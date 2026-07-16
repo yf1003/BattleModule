@@ -24,6 +24,9 @@ export interface IActor {
 
 export enum EActorType {
     HERO = 10001,
+    FlyingEye = 10002,
+    Goblin = 10003,
+    Mushroom = 10004,
 }
 
 export interface IVec2 {

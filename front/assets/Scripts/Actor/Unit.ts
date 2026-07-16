@@ -2,6 +2,7 @@ import * as cc from "cc";
 import { EActorDir, EActorState, EActorType, IActor, IVec2 } from "../Share/Define";
 import { ActorResManager } from "../Global/ActorResManager";
 import { UnitAnimationStateMachine } from "./UnitAnimationStateMachine";
+import { ActorConfig } from "../Share/ActorConfig";
 const { ccclass, property, menu } = cc._decorator;
 
 @ccclass
@@ -31,9 +32,17 @@ export default class Unit extends cc.Component implements IActor {
 
     public init(data: IActor, now: number) {
         this.syncActorData(data)
+        this.adaptSkinConfig(data)
         const animationClipMap = ActorResManager.ins.actorClipMap.get(this.type)
         this.animationStateMachine.init(this.animtionCom, this.type, animationClipMap)
         this.render(data, now)
+    }
+
+    private adaptSkinConfig(data: IActor) {
+        const config = ActorConfig[data.type]
+        const uiTran = this.node.getComponent(cc.UITransform)
+        uiTran.setContentSize(config.hurtBox.width, config.hurtBox.height)
+        this.animtionCom.node.setPosition(config.animationComOffset.x, config.animationComOffset.y)
     }
 
     render(data: IActor, now: number) {

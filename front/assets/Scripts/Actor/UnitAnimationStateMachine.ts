@@ -60,7 +60,7 @@ export class UnitAnimationStateMachine {
     }
 
     public destroy(): void {
-        this.animation?.stop();
+        this.animation?.isValid && this.animation.stop();
         this.animation = null;
         this.animationMap = null;
         this.currentState = null;

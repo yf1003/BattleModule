@@ -47,6 +47,7 @@ export class GameManager extends Singleton<GameManager>() {
         this.client.listenMsg('server/Frame', message => {
             this.handleServerFrame(message);
         });
+        // 断线重连
         this.client.flows.postDisconnectFlow.push(flow => {
             this.myPlayerId = 0;
             this.pendingInputMessages = [];
