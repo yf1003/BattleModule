@@ -1,0 +1,28 @@
+{
+  "name": "battle-module-backend",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/index.js",
+  "scripts": {
+    "proto": "tsrpc proto",
+    "sync": "tsrpc sync",
+    "api": "tsrpc api",
+    "doc": "tsrpc doc",
+    "dev": "tsrpc dev",
+    "build": "tsrpc build",
+    "start": "node dist/index.js",
+    "typecheck": "tsc --noEmit",
+    "test": "mocha -r ts-node/register test/**/*.test.ts"
+  },
+  "dependencies": {
+    "tsrpc": "^3.4.21"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^18.19.0",
+    "mocha": "^10.8.2",
+    "ts-node": "^10.9.2",
+    "tsrpc-cli": "^2.4.5",
+    "typescript": "~4.7.4"
+  }
+}

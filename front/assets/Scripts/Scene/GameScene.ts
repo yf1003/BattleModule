@@ -2,11 +2,10 @@ import * as cc from "cc";
 import { ControlManager } from "../ControlInput/ControlManager";
 import { ActorResManager } from "../Global/ActorResManager";
 import {
-    EActorDir,
     EActorState,
     EActorType,
     EInputType,
-    IGameSystemInput,
+    IClientInput,
 } from "../Share/Define";
 import BattleEvent from "../Events/BattleEvent";
 import { EBattleEvents } from "../Events/BattleEventsEnum";
@@ -22,33 +21,22 @@ export default class GameScene extends cc.Component {
 
     async onLoad() {
         LayerManager.ins.init()
-        GameManager.ins.init()
-        await this.preload()
+        await GameManager.ins.init()
+        const [, joined] = await Promise.all([
+            this.preload(),
+            GameManager.ins.join(),
+        ])
+        if (!joined || !this.isValid) return
         this.registerEvents()
         this.shouldUpdate = true
-
-        this.addFakeData()
     }
 
     onDestroy() {
+        this.shouldUpdate = false
         BattleEvent.targetOff(this)
         ControlManager.ins.onControlAttack = null
         ActorResManager.ins.clear()
-    }
-
-    private addFakeData() {
-        GameManager.ins.gameSystem.state.actors.push({
-            id: 1,
-            type: EActorType.HERO,
-            hp: 100,
-            pos: cc.v2(0, 0),
-            dir: EActorDir.Right,
-            state: EActorState.Idle,
-            stateStartTime: 0,
-            stateEndTime: 0,
-            stateVersion: 0,
-        })
-        GameManager.ins.myPlayerId = 1
+        void GameManager.ins.clear()
     }
 
     private registerEvents() {
@@ -70,7 +58,7 @@ export default class GameScene extends cc.Component {
         ])
     }
 
-    private handleClientSync(input: IGameSystemInput) {
+    private handleClientSync(input: IClientInput) {
         GameManager.ins.sendClientInput(input)
     }
 
@@ -82,7 +70,6 @@ export default class GameScene extends cc.Component {
 
         BattleEvent.emit(EBattleEvents.ClientSync, {
             type: EInputType.ActorAttack,
-            actorId: actor.id,
         })
     }
 
@@ -95,7 +82,7 @@ export default class GameScene extends cc.Component {
 
     private tick(dt: number) {
         this.tickUserActor(dt)
-        this.tickLocalTime(dt)
+        GameManager.ins.localTimePast(dt)
     }
 
     /** tick当前玩家 */
@@ -106,18 +93,9 @@ export default class GameScene extends cc.Component {
         const { x, y } = ControlManager.ins.inputDir;
         BattleEvent.emit(EBattleEvents.ClientSync, {
             type: EInputType.ActorMove,
-            actorId: actor.id,
             moveDirection: cc.v2(x, y),
             dt: dt,
         });
-    }
-
-    /** 本地时间流逝：目前不是联机，直接本地 */
-    private tickLocalTime(dt: number) {
-        GameManager.ins.sendClientInput({
-            type: EInputType.TimePast,
-            dt: dt,
-        })
     }
 
     private render() {
@@ -130,12 +108,22 @@ export default class GameScene extends cc.Component {
             let unit = GameManager.ins.actorMap.get(actor.id)
             if (!unit) {
                 const actorPrefab = ActorResManager.ins.actorPrefabMap.get(actor.type)
-                const unit = cc.instantiate(actorPrefab).getComponent(Unit)
+                unit = cc.instantiate(actorPrefab).getComponent(Unit)
                 unit.node.setParent(LayerManager.ins.unitLayer)
                 GameManager.ins.actorMap.set(actor.id, unit)
                 unit.init(actor, now)
             } else {
                 unit.render(actor, now)
+            }
+        }
+
+        for (const [actorId, unit] of GameManager.ins.actorMap) {
+            const exists = GameManager.ins.gameSystem.state.actors.some(
+                actor => actor.id === actorId,
+            )
+            if (!exists) {
+                unit.node.destroy()
+                GameManager.ins.actorMap.delete(actorId)
             }
         }
     }

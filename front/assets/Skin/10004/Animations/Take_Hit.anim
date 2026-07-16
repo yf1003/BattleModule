@@ -1,0 +1,87 @@
+[
+  {
+    "__type__": "cc.AnimationClip",
+    "_name": "Take Hit",
+    "_objFlags": 0,
+    "_native": "",
+    "sample": 12.0,
+    "speed": 1,
+    "wrapMode": 1,
+    "_duration": 0.3333333333333333,
+    "_hash": 0,
+    "_tracks": [
+      {
+        "__id__": 1
+      }
+    ],
+    "_events": [],
+    "_exoticAnimation": null
+  },
+  {
+    "__type__": "cc.animation.ObjectTrack",
+    "_binding": {
+      "__type__": "cc.animation.TrackBinding",
+      "path": {
+        "__id__": 2
+      }
+    },
+    "_channel": {
+      "__id__": 5
+    }
+  },
+  {
+    "__type__": "cc.animation.TrackPath",
+    "_paths": [
+      {
+        "__id__": 3
+      },
+      {
+        "__id__": 4
+      },
+      "spriteFrame"
+    ]
+  },
+  {
+    "__type__": "cc.animation.HierarchyPath",
+    "path": "/"
+  },
+  {
+    "__type__": "cc.animation.ComponentPath",
+    "component": "cc.Sprite"
+  },
+  {
+    "__type__": "cc.animation.Channel",
+    "_curve": {
+      "__id__": 6
+    }
+  },
+  {
+    "__type__": "cc.ObjectCurve",
+    "_times": [
+      0.0,
+      0.08333339999999989,
+      0.16666669999999995,
+      0.25
+    ],
+    "_values": [
+      {
+        "__uuid__": "3cb51277-f5d7-5c05-871b-56b0d5aedbad@f9941",
+        "__expectedType__": "cc.Asset"
+      },
+      {
+        "__uuid__": "6c72bfdf-3d5d-562c-acea-dbf916de0dda@f9941",
+        "__expectedType__": "cc.Asset"
+      },
+      {
+        "__uuid__": "38325760-cb61-56de-8bdd-d60c113f409e@f9941",
+        "__expectedType__": "cc.Asset"
+      },
+      {
+        "__uuid__": "e5457392-6846-518e-9b85-bdeba76e05f1@f9941",
+        "__expectedType__": "cc.Asset"
+      }
+    ],
+    "preExtrapolation": 1,
+    "postExtrapolation": 1
+  }
+]

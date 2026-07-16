@@ -3,5 +3,10 @@
   "uuid": "845850c4-4f75-470d-8431-9035241af2ed",
   "creator": {
     "version": "3.8.3"
+  },
+  "dependencies": {
+    "tsrpc-base-client": "^2.1.18",
+    "tsrpc-browser": "^3.4.18",
+    "tsrpc-miniapp": "^3.4.18"
   }
 }
