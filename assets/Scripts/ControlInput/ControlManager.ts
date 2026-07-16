@@ -3,6 +3,7 @@ import Singleton from "../../Framework/Utils/Singleton";
 import { AssetsHandler } from "../../Framework/AssetsManager/AssetsHandler";
 import KeyBoardInput from "./KeyBoard/KeyBoardInput";
 import { PREVIEW } from "cc/env";
+import LayerManager from "../Global/LayerManager";
 
 
 export class ControlManager extends Singleton<ControlManager>() {
@@ -23,14 +24,12 @@ export class ControlManager extends Singleton<ControlManager>() {
         const prefab = await AssetsHandler.loadAssets('BattleRes', "Prefab/ButtonControlPanel", cc.Prefab)
         const panelNode = cc.instantiate(prefab)
 
-        const canvas = cc.director.getScene().getChildByName('Canvas')
-        canvas.addChild(panelNode)
+        LayerManager.ins.uiLayer.addChild(panelNode)
         panelNode.setSiblingIndex(999)
     }
 
     /** 添加键盘控制 */
     private addKeyBoardControl() {
-        const canvas = cc.director.getScene().getChildByName('Canvas')
-        canvas.addComponent(KeyBoardInput)
+        LayerManager.ins.canvas.addComponent(KeyBoardInput)
     }
 }

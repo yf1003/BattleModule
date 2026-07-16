@@ -1,10 +1,6 @@
 import * as cc from "cc";
-import { EActorDir, EActorType, EInputType, IActor, IVec2 } from "../Share/Define";
+import { EActorDir, EActorType, IActor, IVec2 } from "../Share/Define";
 import { ActorResManager } from "../Global/ActorResManager";
-import { GameManager } from "../Global/GameManager";
-import BattleEvent from "../Events/BattleEvent";
-import { EBattleEvents } from "../Events/BattleEventsEnum";
-import { ControlManager } from "../ControlInput/ControlManager";
 const { ccclass, property, menu } = cc._decorator;
 
 @ccclass
@@ -23,10 +19,10 @@ export default class Unit extends cc.Component implements IActor {
     private animationClipMap: Map<string, cc.AnimationClip> = null
     private targetPos: cc.Vec3 = null
     private tw: cc.Tween<unknown>;
-    private isDead: boolean = false
+    public isDead: boolean = false
 
 
-    public async init(data: IActor) {
+    public init(data: IActor) {
         const { id, hp, pos, dir, type } = data;
         this.id = id;
         this.pos = pos;
@@ -34,23 +30,7 @@ export default class Unit extends cc.Component implements IActor {
         this.type = type;
         this.hp = hp;
 
-        this.animationClipMap = await ActorResManager.ins.getActionAnimationClip(this.type);
-    }
-
-    async tick(dt: number) {
-        if (GameManager.ins.myPlayerId !== this.id || this.isDead) {
-            return;
-        }
-
-        if (ControlManager.ins.inputDir.length()) {
-            const { x, y } = ControlManager.ins.inputDir;
-            BattleEvent.emit(EBattleEvents.ClientSync, {
-                type: EInputType.ActorMove,
-                actorId: this.id,
-                moveDirection: cc.v2(x, y),
-                dt: dt,
-            });
-        }
+        this.animationClipMap = ActorResManager.ins.actorClipMap.get(this.type)
     }
 
     render(data: IActor) {
