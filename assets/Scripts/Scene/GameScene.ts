@@ -37,6 +37,7 @@ export default class GameScene extends cc.Component {
             pos: cc.v2(0, 0),
             dir: EActorDir.Right
         })
+        GameManager.ins.myPlayerId = 1
     }
 
     private registerEvents() {

@@ -1,5 +1,5 @@
 import { ActorConfig } from "./ActorConfig";
-import { EInputType, IGameSystemInput, IGameSystemState } from "./Define"
+import { EActorDir, EInputType, IGameSystemInput, IGameSystemState } from "./Define"
 import { deepClone } from "./Utils";
 
 /**
@@ -29,6 +29,8 @@ export class GameSystem {
             const moveSpeed = ActorConfig[player.type].moveSpeed;
             player.pos.x += input.moveDirection.x * moveSpeed * input.dt;
             player.pos.y += input.moveDirection.y * moveSpeed * input.dt;
+
+            player.dir = input.moveDirection.x >= 0 ? EActorDir.Right : EActorDir.Left;
         }
         else if (input.type === EInputType.TimePast) {
             this._state.now += input.dt;

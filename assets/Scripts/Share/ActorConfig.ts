@@ -21,7 +21,7 @@ export interface IActorConfig {
 
 export const ActorConfig: Record<EActorType, IActorConfig> = {
     [EActorType.HERO]: {
-        moveSpeed: 10,
+        moveSpeed: 100,
         animations: {
             moveAnim: 'Run',
             idleAnim: 'Idle',
