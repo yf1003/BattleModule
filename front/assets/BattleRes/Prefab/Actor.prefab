@@ -175,10 +175,7 @@
       "b": 255,
       "a": 255
     },
-    "_spriteFrame": {
-      "__uuid__": "f1016431-31f8-537d-8e11-ba655717c2ed@f9941",
-      "__expectedType__": "cc.SpriteFrame"
-    },
+    "_spriteFrame": null,
     "_type": 0,
     "_fillType": 0,
     "_sizeMode": 2,
@@ -364,6 +361,8 @@
       "__id__": 0
     },
     "fileId": "1a4JrPIGZO+amgSfEcv/YE",
+    "instance": null,
+    "targetOverrides": null,
     "nestedPrefabInstanceRoots": null
   },
   {

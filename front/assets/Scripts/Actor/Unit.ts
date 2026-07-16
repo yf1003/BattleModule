@@ -31,7 +31,10 @@ export default class Unit extends cc.Component implements IActor {
     }
 
     public init(data: IActor, now: number) {
-        this.syncActorData(data)
+        const {id, type} = data
+        this.id = id
+        this.type = type
+        
         this.adaptSkinConfig(data)
         const animationClipMap = ActorResManager.ins.actorClipMap.get(this.type)
         this.animationStateMachine.init(this.animtionCom, this.type, animationClipMap)
