@@ -1,5 +1,5 @@
 import { ActorConfig } from "./ActorConfig";
-import { EActorDir, EInputType, IGameSystemInput, IGameSystemState } from "./Define"
+import { EActorDir, EInputType, IActorAttack, IActorMove, IGameSystemInput, IGameSystemState, ITimePast } from "./Define"
 import { ActorStateMachine } from "./ActorStateMachine";
 import { deepClone } from "./Utils";
 
@@ -20,48 +20,58 @@ export class GameSystem {
     }
 
     // 应用输入，计算状态变更
-    applyInput(input: IGameSystemInput) {
+    public applyInput(input: IGameSystemInput) {
         if (input.type === EInputType.ActorMove) {
-            const player = this._state.actors.find(v => v.id === input.actorId);
-            if (!player) {
-                return;
-            }
-
-            const canMove = ActorStateMachine.move(
-                player,
-                input.moveDirection,
-                this._state.now,
-            );
-            if (!canMove) {
-                return;
-            }
-
-            const moveSpeed = ActorConfig[player.type].moveSpeed;
-            player.pos.x += input.moveDirection.x * moveSpeed * input.dt;
-            player.pos.y += input.moveDirection.y * moveSpeed * input.dt;
-
-            if (input.moveDirection.x !== 0) {
-                player.dir = input.moveDirection.x > 0 ? EActorDir.Right : EActorDir.Left;
-            }
+            this.handleActorMove(input);
         }
         else if (input.type === EInputType.ActorAttack) {
-            const player = this._state.actors.find(v => v.id === input.actorId);
-            if (!player) {
-                return;
-            }
-
-            ActorStateMachine.attack(player, this._state.now);
+            this.handleActorAttack(input);
         }
         else if (input.type === EInputType.TimePast) {
-            this._state.now += input.dt;
-            this._state.actors.forEach(actor => {
-                ActorStateMachine.update(actor, this._state.now);
-            });
+            this.handleTimePast(input);
         }
     }
 
+
+    private handleActorMove(input: IActorMove) {
+        const player = this._state.actors.find(v => v.id === input.actorId);
+        if (!player) {
+            return;
+        }
+
+        const canMove = ActorStateMachine.move(
+            player,
+            input.moveDirection,
+            this._state.now,
+        );
+        if (!canMove) {
+            return;
+        }
+
+        const moveSpeed = ActorConfig[player.type].moveSpeed;
+        player.pos.x += input.moveDirection.x * moveSpeed * input.dt;
+        player.pos.y += input.moveDirection.y * moveSpeed * input.dt;
+        player.dir = input.moveDirection.x >= 0 ? EActorDir.Right : EActorDir.Left;
+    }
+
+    private handleActorAttack(input: IActorAttack) {
+        const player = this._state.actors.find(v => v.id === input.actorId);
+        if (!player) {
+            return;
+        }
+
+        ActorStateMachine.attack(player, this._state.now);
+    }
+
+    private handleTimePast(input: ITimePast) {
+        this._state.now += input.dt;
+        this._state.actors.forEach(actor => {
+            ActorStateMachine.update(actor, this._state.now);
+        });
+    }
+
     /** 由服务端命中判定或权威战斗逻辑调用，客户端输入不应直接调用。 */
-    applyDamage(
+    private applyDamage(
         actorId: number,
         damage: number,
         hurtStunDuration?: number,

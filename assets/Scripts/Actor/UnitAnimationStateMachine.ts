@@ -39,16 +39,12 @@ export class UnitAnimationStateMachine {
     }
 
     public render(actor: IActor, now: number): void {
+        if (!this.animation?.isValid) return
+        if (!this.animationMap) return
         if (
-            !this.animation
-            || !this.animationMap
-            || (
-                actor.state === this.currentState
-                && actor.stateVersion === this.currentStateVersion
-            )
-        ) {
-            return;
-        }
+            actor.state === this.currentState &&
+            actor.stateVersion === this.currentStateVersion
+        ) return
 
         const clipName = this.animationMap[actor.state];
         const animationState = this.animation.getState(clipName);
