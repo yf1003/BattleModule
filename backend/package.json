@@ -12,7 +12,8 @@
     "build": "tsrpc build",
     "start": "node dist/index.js",
     "typecheck": "tsc --noEmit",
-    "test": "mocha -r ts-node/register test/**/*.test.ts"
+    "test": "mocha -r ts-node/register test/**/*.test.ts",
+    "game": "tsrpc sync & tsrpc dev"
   },
   "dependencies": {
     "tsrpc": "^3.4.21"

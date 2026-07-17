@@ -171,8 +171,8 @@ export class Room {
             type: EActorType.HERO,
             hp: GameConfig.initialHp,
             pos: {
-                x: (column - 2) * 120,
-                y: (row - 1) * 120,
+                x: 250,
+                y: 300,
             },
             dir: EActorDir.Right,
             state: EActorState.Idle,

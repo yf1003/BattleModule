@@ -62,6 +62,7 @@ export class GameSystem {
         actor.pos.x += input.moveDirection.x * moveSpeed * input.dt;
         actor.pos.y += input.moveDirection.y * moveSpeed * input.dt;
 
+        actor.pos.x = clamp(actor.pos.x, GameConfig.minMoveX, GameConfig.maxMoveX);
         actor.pos.y = clamp(actor.pos.y, GameConfig.minMoveY, GameConfig.maxMoveY);
 
         // AGENT不准改这段代码
